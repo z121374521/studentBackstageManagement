@@ -1,0 +1,38 @@
+<div class="templatemo-sidebar">
+    <header class="templatemo-site-header">
+      <div class="square"></div>
+      <h1><%= adminData.val.username %></h1>
+    </header>
+    <div class="profile-photo-container">
+      <img src="/images/<%= adminData.val.src %>" alt="Profile Photo" class="img-responsive">  
+      <div class="profile-photo-overlay"></div>
+    </div>      
+    <!-- Search box -->
+    <% if(idx == 'xq') { %>
+    <div action="javascript:return true;" class="s" role="search">
+      <div class="input-group">
+          <button type="button" class="fa fas fa-search"></button>
+          <form action="javascript:return true;">
+          <input type="search" list="dataList" class="form-control cha" placeholder="查找学生 请输入学号或者姓名" name="srch-term" id="srch-term">           
+        </form>
+          <datalist id='dataList'>
+
+          </datalist>
+        </div>
+    </div>
+    <% } %>
+    <div class="mobile-menu-icon">
+        <i class="fa fa-bars"></i>
+    </div>
+    <nav class="templatemo-left-nav">          
+      <ul>
+        <li><a href="/" class="<%= idx=='index'?'active':'' %>"><i class="fa fa-home fa-fw"></i>动画学院</a></li>
+        <li><a class="<%= idx=='xq'?'active':'' %>" href="/student/detalis"><i class="fa fa-database fa-fw"></i>学生详情</a></li>
+        <li><a class="<%= idx=='add'?'active':'' %>" href="/student/addStudent"><i class="fa fa-bar-chart fa-fw"></i>增加学生</a></li>
+        <li><a class="<%= idx=='sjb'?'active':'' %>" href="/student/ech"><i class="fa fa-sliders fa-fw"></i>学生数据表</a></li>
+        <li><a class="<%= idx=='admin'?'active':'' %>" href="/student/admin"><i class="fa fa-map-marker fa-fw"></i>管理员列表</a></li>
+        <li><a class="<%= idx=='addadmin'?'active':'' %>" href="/student/addad"><i class="fa fa-users fa-fw"></i>增加管理员</a></li>
+        <li><a class="<%= idx=='out'?'active':'' %>" href="/Logout"><i class="fa fa-eject fa-fw"></i>退出</a></li>
+      </ul>  
+    </nav>
+  </div>

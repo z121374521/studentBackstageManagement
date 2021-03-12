@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="#" />
+    <link type="text/css" rel="styleSheet" href="css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号登录</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        .box {
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 420px;
+            width: 300px;
+            margin-left: -150px;
+            margin-top: -210px;
+            /* border: 1px solid #ccc;
+            background-color: #fff; */
+            border: 1px solid #ff8484;
+            background-color: #9d4449;
+            border-radius: 25px;
+            display: block;
+            z-index: 2;
+        }
+
+        .top-s {
+            font-size: 12px;
+            color: #ccc;
+            display: block;
+            text-align: center;
+            margin-left: 25px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+        }
+
+        .top-x {
+            font-size: 18px;
+            color: black;
+            display: block;
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .cuo {
+            float: right;
+            margin-right: 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .yanz {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .mb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .top-x {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="bg">
+        <div id="hint">
+            <!-- 提示框 -->
+            <p>登录失败</p>
+        </div>
+        <div id="login_wrap">
+            <div id="login">
+                <!-- 登录注册切换动画 -->
+                <div id="status">
+                    <i class="log" style="top: 0">Log</i>
+                    <i class="fool" style="top: 35px">Fool</i>
+                    <i style="right: 5px">in</i>
+                </div>
+                <span>
+                    <form id="form" action="" enctype="multipart/form-data">
+                        <p class="pimg"> <img src="images/mr.jpg" alt="" id="img"><input type="file" class="file"
+                                name="file" accept="image/*" onchange="preview(this)"><b class="b">修改头像</b></p>
+                        <p class="form"><input autocomplete="off" type="text" id="user" class="ipt" name="user"
+                                placeholder="请输入账号"></p>
+                        <p class="form"><input type="password" class="ipt" id="passwd" name="pwd"
+                                placeholder="请输入密码"><input style="display: none;" type="text" class="ipt" id="idol"
+                                name="idol" placeholder="你的偶像是？"></p>
+                        <p class="form confirm"><input type="password" id="confirm-passwd" name="newpwd"
+                                placeholder="请输入新密码"></p>
+                        <input type="button" value="登录" class="btn dl ipt" style="margin-right: 20px;">
+                        <input style="display: none;" type="button" value="修改" class="btn xg ipt" id="btn">
+                    </form>
+                    <a class="fools" href="javascript:;">忘记密码?</a>
+                </span>
+            </div>
+
+            <div id="login_img">
+                <!-- 图片绘制框 -->
+                <span class="circle">
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="star">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="fly_star">
+                    <span></span>
+                    <span></span>
+                </span>
+                <p id="title">CLOUD</p>
+            </div>
+        </div>
+        <div class="yanz">
+            <div class="box">
+                <img src="/img/cw.png" class="cuo">
+                <span class="top-s">身份验证</span>
+                <span class="top-x">拖动滑块，使图片角度为正</span>
+                <div id="rotateWrap1">
+                    <div class="rotateverify-contaniner">
+                        <div class="rotate-can-wrap">
+                            <canvas class="rotateCan rotate-can" width="200" height="200"></canvas>
+                            <div class="statusBg status-bg"></div>
+                        </div>
+                        <div class="control-wrap slideDragWrap">
+                            <div class="control-tips">
+                                <p class="c-tips-txt cTipsTxt">滑动将图片转正</p>
+                            </div>
+                            <div class="control-bor-wrap controlBorWrap"></div>
+                            <div class="control-btn slideDragBtn">
+                                <i class="control-btn-ico"></i>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb"></div>
+        </div>
+    </div>
+
+</body>
+<script src="js/JQery-1.9.1.js"></script>
+<script src="js/yanz.js"></script>
+<script src="js/login.js"></script>
+
+
+<script>
+    $(function () {
+        // 回退检测 刷新
+        // if (window.name != "noReload") {
+        //   window.name = "noReload";
+        //   location.reload();
+        // } else {
+        //   window.name = "";
+        // }
+        // 回退检测 刷新
+        if (document.addEventListener) {
+            /*event.persisted 判断浏览器是否有缓存, 有为true, 没有为false*/
+            window.addEventListener('pageshow', function (event) {
+                if (event.persisted || window.performance && window.performance.navigation.type == 2) {
+                    location.reload();
+                }
+            }, false);
+        }
+
+
+
+        new Login()
+
+        //上传图片   file是input 上传图片 
+
+
+    })
+    function preview(file) {
+        // console.log(file);
+        if (file.files && file.files[0]) {//如果  上传了图片
+            var reader = new FileReader(file.files[0])
+
+            reader.readAsDataURL(file.files[0])//读取文件路径  把传的文件数据  转换成src路径
+
+            reader.onload = function (ev) {
+                // console.log(ev.target);//也就是一大段 路径
+                img.src = ev.target.result;
+            }
+
+        }
+
+    }
+</script>
+
+</html>
